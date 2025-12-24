@@ -7,6 +7,7 @@ COPY package*.json ./
 RUN npm install
 
 COPY . .
+RUN node server.js
 
 RUN npm run build
 
@@ -21,9 +22,4 @@ EXPOSE 80
     COPY --from=builder /app/build .
 
  CMD ["nginx", "-g", "daemon off;"]
-
-
-
-
-
 
