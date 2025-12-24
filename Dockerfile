@@ -7,11 +7,22 @@ COPY package*.json ./
 RUN npm install
 
 COPY . .
+
 RUN npm run build
+
 
 EXPOSE 80
 
-CMD ["nginx", "-g", "daemon off;"]
+# ---------- Nginx Serve ----------
+
+    FROM nginx:1.29.4-alpine
+    WORKDIR /usr/share/nginx/html
+    RUN rm -rf ./*
+    COPY --from=builder /app/build .
+
+ CMD ["nginx", "-g", "daemon off;"]
+
+
 
 
 

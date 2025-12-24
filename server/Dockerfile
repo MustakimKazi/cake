@@ -1,19 +1,14 @@
 # ---------- Stage 1: Build ----------
-FROM node:20 AS builder
+FROM node:20 AS Builder
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY package.json .
+
 RUN npm install
 
 COPY . .
 
+EXPOSE 5000
 
-# ---------- Stage 2: Serve ----------
-
-
-
-    
-EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
+ENTRYPOINT [ "node","start" ]
