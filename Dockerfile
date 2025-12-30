@@ -1,5 +1,5 @@
 # ---------- Stage 1: Build ----------
-FROM node:18 AS builder
+FROM node:lts-alpine3.23 AS builder
 
 WORKDIR /app
 
@@ -7,19 +7,22 @@ COPY package*.json ./
 RUN npm install
 
 COPY . .
-RUN node server.js
+
 
 RUN npm run build
 
 
-EXPOSE 80
+EXPOSE 4000
 
 # ---------- Nginx Serve ----------
 
-    FROM nginx:1.29.4-alpine
-    WORKDIR /usr/share/nginx/html
-    RUN rm -rf ./*
-    COPY --from=builder /app/build .
+FROM nginx:1.29.4-alpine
 
- CMD ["nginx", "-g", "daemon off;"]
+WORKDIR /usr/share/nginx/html
+
+RUN rm -rf ./*
+
+COPY --from=builder ./app/dist .
+
+CMD ["nginx", "-g", "daemon off;"]
 

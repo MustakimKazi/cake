@@ -1,9 +1,9 @@
 # ---------- Stage 1: Build ----------
-FROM node:20 AS Builder
+FROM node:18 AS Builder
 
-WORKDIR /app
+WORKDIR ../cake/server
 
-COPY package.json .
+COPY package*.json ./
 
 RUN npm install
 
@@ -11,4 +11,4 @@ COPY . .
 
 EXPOSE 5000
 
-ENTRYPOINT [ "node","start" ]
+CMD ["node" ,  "server.js"]
