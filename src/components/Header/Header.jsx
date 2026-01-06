@@ -16,8 +16,8 @@ const Header = ({ cartCount, isDarkMode, toggleTheme }) => {
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
 
-          <a href="/" className="block">
-            <img src="https://www.fnp.com/assets/images/custom/new-logo-2023.svg" alt="FNP" height="40" className="h-8 md:h-10" />
+          <a href="/" className="w-32 flex-shrink-0">
+            <img src="https://png.pngtree.com/element_our/20190523/ourmid/pngtree-cartoon-minimalist-pink-cake-decoration-material-image_1093120.jpg" alt="FNP" height="60" className="h-8 md:h-10" />
           </a>
 
           <div className="hidden md:flex items-center bg-gray-100 rounded-lg overflow-hidden w-[350px] lg:w-[450px] ml-6 dark:bg-slate-700 transition-colors">
